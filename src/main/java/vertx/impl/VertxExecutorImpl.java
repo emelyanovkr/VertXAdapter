@@ -18,4 +18,9 @@ public class VertxExecutorImpl implements Executor
     {
         vertx.runOnContext(v -> command.run());
     }
+
+    public Vertx getVertx()
+    {
+        return vertx;
+    }
 }
