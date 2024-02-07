@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ceeac0a2-9a80-4f8a-9bdb-ff18e4e8c111" name="Changes" comment="importing test frameworks &amp; working with multiple tasks">
+    <list default="true" id="ceeac0a2-9a80-4f8a-9bdb-ff18e4e8c111" name="Changes" comment="almost completed ExecutorService implementation, some using examples provided in VertxExecutorRunner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/vertx/impl/VertxExecutorImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vertx/impl/VertXImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +37,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="VertXAdapter" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="VertXAdapter" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -94,25 +89,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.VertXAdapter [:VertxExecutorRunner.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.VertXAdapter [test].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.VertXAdapter.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.VertXAdapter [:VertxExecutorRunner.main()].executor": "Run",
+    "Gradle.VertXAdapter [test].executor": "Run",
+    "Gradle.VertXAdapter.executor": "Run",
+    "Gradle.VertXImplTest.SubmitReturnPassedResult.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Kirill/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-core/4.5.1/30901de81e86109fcd768f6150686795e62ed0f7/vertx-core-4.5.1.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.VertxExecutorRunner">
+}]]></component>
+  <component name="RunManager" selected="Gradle.VertXAdapter [test]">
     <configuration name="VertxExecutorRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="vertx.impl.VertxExecutorRunner" />
       <module name="VertXAdapter.main" />
@@ -168,11 +166,36 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="VertXImplTest.SubmitReturnPassedResult" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;vertx.impl.VertXImplTest.SubmitReturnPassedResult&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.VertxExecutorRunner" />
-        <item itemvalue="Gradle.VertXAdapter" />
         <item itemvalue="Gradle.VertXAdapter [test]" />
+        <item itemvalue="Gradle.VertXAdapter" />
+        <item itemvalue="Gradle.VertXImplTest.SubmitReturnPassedResult" />
+        <item itemvalue="Application.VertxExecutorRunner" />
       </list>
     </recent_temporary>
   </component>
@@ -189,7 +212,8 @@
       <workItem from="1705987312502" duration="15157000" />
       <workItem from="1706335027544" duration="66000" />
       <workItem from="1706335280841" duration="340000" />
-      <workItem from="1706335658760" duration="6707000" />
+      <workItem from="1706335658760" duration="7443000" />
+      <workItem from="1707158994448" duration="5302000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -215,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705991301233</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="almost completed ExecutorService implementation, some using examples provided in VertxExecutorRunner">
+      <option name="closed" value="true" />
+      <created>1707152487249</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707152487249</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +257,7 @@
     <MESSAGE value="git init" />
     <MESSAGE value="ExecutorImpl added" />
     <MESSAGE value="importing test frameworks &amp; working with multiple tasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="importing test frameworks &amp; working with multiple tasks" />
+    <MESSAGE value="almost completed ExecutorService implementation, some using examples provided in VertxExecutorRunner" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost completed ExecutorService implementation, some using examples provided in VertxExecutorRunner" />
   </component>
 </project>

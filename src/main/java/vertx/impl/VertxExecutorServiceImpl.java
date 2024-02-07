@@ -11,6 +11,7 @@ public class VertxExecutorServiceImpl implements ExecutorService
     private final VertxExecutorImpl vertxExecutor;
     private final Vertx vertx;
     private boolean isShutdown;
+    private boolean shutdownRequest;
     private boolean isTerminated;
 
     public VertxExecutorServiceImpl(VertxExecutorImpl vertxExecutor)
@@ -18,6 +19,7 @@ public class VertxExecutorServiceImpl implements ExecutorService
         this.vertxExecutor = vertxExecutor;
         vertx = vertxExecutor.getVertx();
 
+        shutdownRequest = false;
         isShutdown = false;
         isTerminated = false;
     }
@@ -27,20 +29,39 @@ public class VertxExecutorServiceImpl implements ExecutorService
     {
         if(command == null) throw new NullPointerException();
         vertxExecutor.execute(command);
-
     }
 
     @Override
     public void shutdown()
     {
-        vertx.close();
-        isTerminated = true;
+        shutdownRequest = true;
+
+        isShutdown = true;
+
+        vertx.close(voidAsyncResult ->
+        {
+            if (voidAsyncResult.succeeded())
+            {
+                isTerminated = true;
+            }
+            else if (voidAsyncResult.failed())
+            {
+                try
+                {
+                    throw voidAsyncResult.cause();
+                } catch (Throwable e)
+                {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     @Override
     public List<Runnable> shutdownNow()
     {
-        return null;
+        // temp
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -58,8 +79,15 @@ public class VertxExecutorServiceImpl implements ExecutorService
     @Override
     public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException
     {
-        // temporary
-        return false;
+        long timeout_in_ms = unit.toMillis(timeout);
+        long end_time = System.currentTimeMillis() + timeout_in_ms;
+
+        while(!isTerminated && System.currentTimeMillis() < end_time)
+        {
+            Thread.sleep(100);
+        }
+
+        return isTerminated;
     }
 
     @Override
