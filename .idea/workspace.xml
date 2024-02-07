@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ceeac0a2-9a80-4f8a-9bdb-ff18e4e8c111" name="Changes" comment="almost completed ExecutorService implementation, some using examples provided in VertxExecutorRunner">
+    <list default="true" id="ceeac0a2-9a80-4f8a-9bdb-ff18e4e8c111" name="Changes" comment="created tests, completed ExecutorServiceImpl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vertx/impl/VertxExecutorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/vertx/impl/VertxExecutorImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vertx/impl/VertXImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/vertx/impl/VertXImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/vertx/impl/VertxImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -213,7 +213,7 @@
       <workItem from="1706335027544" duration="66000" />
       <workItem from="1706335280841" duration="340000" />
       <workItem from="1706335658760" duration="7443000" />
-      <workItem from="1707158994448" duration="5302000" />
+      <workItem from="1707158994448" duration="11561000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -247,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707152487249</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="created tests, completed ExecutorServiceImpl">
+      <option name="closed" value="true" />
+      <created>1707302322869</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707302322869</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +266,7 @@
     <MESSAGE value="ExecutorImpl added" />
     <MESSAGE value="importing test frameworks &amp; working with multiple tasks" />
     <MESSAGE value="almost completed ExecutorService implementation, some using examples provided in VertxExecutorRunner" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost completed ExecutorService implementation, some using examples provided in VertxExecutorRunner" />
+    <MESSAGE value="created tests, completed ExecutorServiceImpl" />
+    <option name="LAST_COMMIT_MESSAGE" value="created tests, completed ExecutorServiceImpl" />
   </component>
 </project>

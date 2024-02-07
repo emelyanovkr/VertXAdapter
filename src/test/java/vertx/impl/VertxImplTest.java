@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(VertxExtension.class)
-public class VertXImplTest
+public class VertxImplTest
 {
     private volatile AtomicInteger task_number;
     private VertxExecutorServiceImpl executorService;
@@ -161,5 +161,11 @@ public class VertXImplTest
                 executorService.shutdown();
             }
         }
+    }
+
+    @Test
+    public void InvokeAllWithCallableReturnsListOfCompleteFutures()
+    {
+
     }
 }
